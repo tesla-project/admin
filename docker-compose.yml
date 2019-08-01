@@ -1,0 +1,27 @@
+version: "2"
+services:
+  db_admin:
+    image: postgres:alpine
+    restart: always
+    env_file: .env
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_PORT=${DB_PORT}
+  tesla_admin:
+    image: tesla_admin
+    restart: always
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - ${INSTRUMENT_PORT}:${INSTRUMENT_PORT}
+    environment:
+      - DOMAIN=docker
+      - GIT_REPOSITORY=git.tesla-project.eu/institutions/docker-compose
+      - GIT_USER=sergio_read
+      - GIT_PASSWORD=sergio_read
+      - GIT_WORKING_PATH=./data_admin/conf_repo/
+    depends_on:
+      - db_admin

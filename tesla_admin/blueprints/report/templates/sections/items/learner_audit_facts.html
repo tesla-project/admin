@@ -1,0 +1,90 @@
+{% if learner.stats.instruments[ins.id].result_bean is number %}
+    {% if learner.stats.instruments[ins.id].confidence < 0.5 %}
+        <!--
+  ~ TeSLA Admin
+  ~ Copyright (C) 2019 Universitat Oberta de Catalunya
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<div class="card-header neutral-facts">
+            <span>
+                <i class="fas fa-question"></i> {{ _('Missing information') }}
+            </span>
+        </div>
+        <div class="card-body">
+            <p>{{ _("Confidence value is too low to take a decision.") }}</p>
+        </div>
+    {% else %}
+        <div class="card-header positive-facts">
+            <span>
+                <i class="fas fa-thumbs-up"></i> {{ _('Positive Facts') }}
+            </span>
+        </div>
+        <div class="card-body">
+            {% if learner.stats.instruments[ins.id].thresholds is not none %}
+                {% if learner.stats.instruments[ins.id].instrument_polarity > 0 %}
+                    {% if learner.instruments[ins.id].average > learner.stats.instruments[ins.id].thresholds.medium %}
+                        <p>{{ _('The result obtained by this learner is above the defined threshold.')}}</p>
+                    {% endif %}
+                {% else %}
+                    {% if 1-learner.instruments[ins.id].average > learner.stats.instruments[ins.id].thresholds.medium %}
+                        <p>{{ _('The result obtained by this learner is above the defined threshold.')}}</p>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+            {% if learner.stats.instruments[ins.id].h_prob_learner < 0.4 %}
+                <p>{{ _('Looking at results obtained for this learner in this instrument, this is a good result.')}}</p>
+            {% endif %}
+            {% if learner.stats.instruments[ins.id].h_prob_context < 0.4 %}
+                <p>{{ _('This is a good result if we compare with other learners in the context.')}}</p>
+            {% endif %}
+        </div>
+        <div class="card-header negative-facts">
+            <span>
+                <i class="fas fa-thumbs-down"></i> {{ _('Negative Facts') }}
+            </span>
+        </div>
+        <div class="card-body">
+            {% if learner.stats.instruments[ins.id].thresholds is not none %}
+                {% if learner.stats.instruments[ins.id].instrument_polarity > 0 %}
+                    {% if learner.instruments[ins.id].average > learner.stats.instruments[ins.id].thresholds.medium %}
+                    {% else %}
+                        <p>{{ _('The result obtained by this learner is below the defined threshold.')}}</p>
+                    {% endif %}
+                {% else %}
+                    {% if 1-learner.instruments[ins.id].average > learner.stats.instruments[ins.id].thresholds.medium %}
+                    {% else %}
+                        <p>{{ _('The result obtained by this learner is below the defined threshold.')}}</p>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+            {% if learner.stats.instruments[ins.id].h_prob_learner > 0.75 %}
+                <p>{{ _('Looking at results obtained for this learner in this instrument, this is a bad result.')}}</p>
+            {% endif %}
+            {% if learner.stats.instruments[ins.id].h_prob_context > 0.5 %}
+                <p>{{ _('This is a bad result if we compare with other learners in the context.')}}</p>
+            {% endif %}
+        </div>
+    {% endif %}
+{% else %}
+    <div class="card-header neutral-facts">
+        <span>
+            <i class="fas fa-question"></i> {{ _('Missing information.') }}
+        </span>
+    </div>
+    <div class="card-body">
+        <p>{{ _('Available information is not enough to decide.') }}</p>
+    </div>
+{% endif %}

@@ -1,0 +1,42 @@
+/*!
+ * TeSLA Admin
+ * Copyright (C) 2019 Universitat Oberta de Catalunya
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+// Input group
+.input-group {
+  .input-group-text {
+    background-color: #e0e0e0;
+    // Style Placeholders
+    @include placeholder {
+      padding-left: $input-group-text-placeholder-pl;
+    }
+    &.md-addon {
+      border: none;
+      background-color: transparent;
+    }
+  }
+  span {
+    z-index: 10;
+  }
+  .form-control {
+    // margin-top: $input-group-form-control-mt;
+    margin: 0;
+    padding-top: $input-group-form-control-pt;
+    padding-bottom: $input-group-form-control-pb;
+    padding-left: $input-group-form-control-pl;
+  }
+}

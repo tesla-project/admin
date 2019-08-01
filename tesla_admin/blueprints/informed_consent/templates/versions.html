@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% block title %}{{ _('Informed Consent Management') }}{% endblock %}
+{% block header_css %}
+    <!--
+  ~ TeSLA Admin
+  ~ Copyright (C) 2019 Universitat Oberta de Catalunya
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/summernote/summernote.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/summernote/summernote-bs4.css') }}">
+{% endblock %}
+
+{% block sections %}
+    <section class="dashboard-counts no-padding-bottom">
+        <div id="toolbar">
+            &nbsp;&nbsp;<button type="button" data-entity-id="0" class="btn btn-xs btn-success btn-addedit" style="margin-left:auto;"><i class="fa fa-plus"></i> {{ _('New version') }}</button>
+        </div>
+        <div class="row bg-white has-shadow">
+            <table class="table table-striped table-hover" id="table" data-toggle="table" data-url="{{ url_for('informed_consent.list_ajax') }}" data-pagination="true" data-search="true" data-side-pagination="server" data-page-list="[10, 25, 50, 100]" data-toolbar="#toolbar" data-toolbar-align="right" data-sort-name="valid_from" data-sort-order="desc">
+                <thead>
+                <tr>
+                    <th data-field="id" data-sortable="true">#</th>
+                    <th data-field="version" data-align="left" data-sortable="true">{{ _('Version') }}</th>
+                    <th data-field="valid_from" data-align="left" data-sortable="true" data-formatter="valid_format">{{_('Valid from') }}</th>
+                    <th data-field="actions" data-formatter="actions_format">{{ _('Actions') }}</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </section>
+    <div class="modal" tabindex="-1" role="dialog" id="entity_addedit">
+        <div class="modal-dialog modal-xxl">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block body_scripts %}
+    <script src="{{ url_for('static', filename='vendor/bootstrap-table/bootstrap-table.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/bootstrap-table/locale/bootstrap-table-en-US.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/bootstrap-datepicker/locales/bootstrap-datepicker.en-GB.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/summernote/summernote.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/summernote/summernote-bs4.js') }}"></script>
+
+
+    <script src="{{ url_for('informed_consent.static', filename='js/informed_consent_list.js')}}"></script>
+{% endblock %}

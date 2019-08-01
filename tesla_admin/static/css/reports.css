@@ -1,0 +1,332 @@
+/*
+ * TeSLA Admin
+ * Copyright (C) 2019 Universitat Oberta de Catalunya
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* rendered for mobile display first */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: 320px;
+  margin: 0;
+  font-size: 15.99px;
+  font-family: arial, sans-serif;
+}
+
+header {
+  display: flex;
+  flex-direction: column; }
+
+main {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  padding: 2rem;}
+  main .instructions {
+    background: #f0f0f0;
+    text-align: justify;
+    text-align-last: center;
+    padding: 2em; }
+    main .instructions .title {
+      color: #1b3f87; }
+    main .instructions .content {
+      font-size: .75em; }
+.content-inner {
+    width: 100%;
+}
+.header-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1em 2em;
+  align-items: center; }
+
+.header-bottom {
+  width: 100%;
+  background: url(../img/TeSLA_enrolment_banner.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 5em;
+  line-height: 5em;
+  text-align: center;
+  vertical-align: middle;
+  color: #fff; }
+  .header-bottom span {
+    font-size: 2em; }
+
+.tesla-logo img {
+  height: 3em; }
+
+.error-msg {
+  font-size: .9em;
+  color: red;
+}
+
+.shadow-container {
+  flex: 1 1 0; }
+
+.instrument-body {
+  padding: 1em; }
+.instrument-title {
+  text-align: center; }
+  .instrument-title div.blue-separator {
+    width: 6em;
+    height: .5em;
+    border-bottom: 0.25em solid #1b3f87;
+    margin: 0 auto; }
+  .instrument-title span.title {
+    color: #1b3f87;
+    font-weight: 800;
+    font-size: .9em; }
+  .instrument-title span.text,
+  .instrument-title span.question {
+    font-size: .8em; }
+
+.instrument-boxes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  padding: 0 1em; }
+  .button-container button {
+    /* flex-grow: 1; */
+    box-shadow: none;
+    color: white;
+    border: 0;
+    border-radius: .5em;
+    padding: .5em;
+    outline: none;
+    cursor: pointer; }
+  .button-container .button-start {
+    background: #1b3f87;
+    margin-right: .5em; }
+  .button-container .button-stop {
+    background: #f87e7e;
+    margin-left: .5em; }
+
+.completion-box {
+  box-shadow: 0 0 7px 1px #a0a0a0;
+  background: #f0f0f0;
+  width: 17em;
+  height: 17em;
+  margin: 1em;
+  border-radius: .2em; }
+  .completion-box-container {
+    text-align: center; }
+  .completion-box-container .send-msg  {
+    font-weight: bold; }
+  .completion-box-container .error-msg  {
+    font-size: .9em;
+    color: red; }
+  .completion-box-container span {
+    font-size: .9em;
+    color: #1b3f87; }
+  .completion-box .circles-wrp {
+    margin-top: 3.5em; }
+
+
+.face-recognition .video-box {
+  box-shadow: 0 0 7px 1px #a0a0a0;
+  background: #f0f0f0;
+  width: 21em;
+  height: 14em;
+  margin: 1em;
+  border-radius: .2em; }
+.face-recognition .webcam-box {
+  box-shadow: 0 0 7px 1px #a0a0a0;
+  background: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  width: 17em;
+  height: 17em;
+  margin: 1em;
+  border-radius: .2em;
+  align-items: center;
+  justify-content: center;}
+  .face-recognition .webcam-box img {
+    width: 7em;
+    height: 7em;
+    /* -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%); */ }
+  .face-recognition .webcam-box span {
+      margin-top: 2em;
+  }
+
+
+.voice-recognition .vr-textarea-container {
+  display: flex;
+  flex-direction: row;
+  box-shadow: 0 0 7px 1px #a0a0a0;
+  margin: 1em;
+  border-radius: .2em; }
+.voice-recognition .recorder-box {
+  width: 23em;
+  background: #fff;
+  height: 17em;
+  box-sizing: border-box; }
+  .voice-recognition .recorder-box textarea {
+    width: 100%;
+    height: 99%;
+    border: 0;
+    padding: 1em;
+    resize: none;
+    outline-color: #1b3f87;
+    box-sizing: border-box; }
+.voice-recognition .webcam-box {
+  background: #f0f0f0;
+  width: 17em;
+  height: 17em;
+  text-align: center; }
+  .voice-recognition .webcam-box img {
+    width: 7em;
+    height: 7em;
+    position: relative;
+    top: 50%;
+    transform: perspective(1px) translateY(-50%);
+    /* -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%); */ }
+.voice-recognition .button-container {
+  float: right;
+  width: 17em; }
+
+.keystroke-dynamics .input-box,
+.forensic-analysis .input-box {
+  box-shadow: 0 0 7px 1px #a0a0a0;
+  margin: 1em 1em .65em 1em;
+  border-radius: .2em;
+  /* width: 100%;*/
+  height: 17em;
+  background: #fff;
+  box-sizing: border-box; }
+  .keystroke-dynamics .input-box textarea,
+  .forensic-analysis .input-box textarea{
+    width: 100%;
+    height: 100%;
+    border: 0;
+    padding: 1em;
+    resize: none;
+    outline-color: #1b3f87;
+    border-radius: .2em .2em 0 0;
+    box-sizing: border-box; }
+.keystroke-dynamics .remaining-words ,
+.forensic-analysis .remaining-words{
+  background: #f0f0f0;
+  padding: .5em 2em;
+  font-size: .75em;
+  color: #a0a0a0;
+  border-radius: 0 0 .2em .2em;
+  height: 10%;
+  box-sizing: border-box; }
+.keystroke-dynamics .button-container ,
+.forensic-analysis .button-container{
+  float: right;
+  width: 7em; }
+  .keystroke-dynamics .button-container button ,
+  .forensic-analysis .button-container button{
+    margin-right: 0; }
+
+/* .forensic-analysis .instrument-boxes {
+  max-width: 70em;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  justify-content: center;
+  margin-top: 1em; } */
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em;
+  text-align: justify;
+  background: #1b3f87;
+  color: #fff; }
+  footer .eu-funded {
+    width: 9em;
+    text-align: center;
+    margin-bottom: 1em; }
+    footer .eu-funded img {
+      width: 4em;
+      border: 1px solid #fff;
+      margin-bottom: .5em; }
+    footer .eu-funded span {
+      font-size: .4em; }
+  footer span {
+    font-size: .5em; }
+
+/* bigger devices */
+@media (min-width: 760px) {
+  body {
+    background: #f0f0f0;
+  }
+
+  .shadow-container {
+    box-shadow: 0 0 7px 1px #a0a0a0;
+    background: #fff;
+    max-width: calc(100% - 2em);
+    margin: 0 auto;
+    border-radius: .2em;
+    padding-bottom: 3em;
+    width: 100%;
+  }
+
+  .footer-separator {
+    height: 2em; }
+
+  .header-top {
+    padding: 1em 3em; }
+
+  .header-bottom {
+    height: 7.5em;
+    line-height: 7.5em; }
+    .header-bottom span {
+      font-size: 3em; }
+
+  .instrument-title {
+    padding-left: 8em;
+    text-align: left; }
+    .instrument-title div.blue-separator {
+      margin: 0; }
+
+  .instrument-boxes {
+    display: flex;
+    flex-direction: row; }
+
+  main .instructions {
+    padding: 2em 9em; }
+
+  .instrument-boxes {
+    flex-direction: row;
+    align-items: flex-start; }
+
+  .face-recognition .video-box {
+    width: 27em;
+    height: 17em; }
+
+  footer {
+    padding: 1em 10em;
+    flex-direction: row; }
+    footer .eu-funded {
+      width: 9em;
+      margin-right: 1em;
+      margin-bottom: 0; } }
+
+/*# sourceMappingURL=index.css.map */

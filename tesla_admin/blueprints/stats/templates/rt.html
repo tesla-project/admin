@@ -1,0 +1,142 @@
+{% extends "layout.html" %}
+{% block title %}{{ _('Real Time') }}{% endblock %}
+{% block sections %}
+    <!--
+  ~ TeSLA Admin
+  ~ Copyright (C) 2019 Universitat Oberta de Catalunya
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<div class="col-lg-12">
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <h3 class="h4">{{ _("Number of Learners")}}</h3>
+            </div>
+            <div class="card-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xl-2 col-sm-4">
+                            <div class="statistic d-flex align-items-center bg-white has-shadow">
+                                <div class="icon bg-dark"><i class="fa fa-users"></i></div>
+                                <div class="text"><strong id="current_total">0</strong><br><small>{{ _("Total") }}</small></div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-sm-4">
+                            <div class="statistic d-flex align-items-center bg-white has-shadow">
+                                <div class="icon bg-green"><i class="fa fa-users"></i></div>
+                                <div class="text"><strong id="current_ic_ok">0</strong><br><small>{{ _("Valid IC") }}</small></div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-sm-4">
+                            <div class="statistic d-flex align-items-center bg-white has-shadow">
+                                <div class="icon bg-orange"><i class="fa fa-users"></i></div>
+                                <div class="text"><strong id="current_ic_outdated">0</strong><br><small>{{ _("Outdated IC") }}</small></div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-sm-4">
+                            <div class="statistic d-flex align-items-center bg-white has-shadow">
+                                <div class="icon bg-red"><i class="fa fa-users"></i></div>
+                                <div class="text"><strong id="current_ic_rejected">0</strong><br><small>{{ _("Rejected IC") }}</small></div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-sm-4">
+                            <div class="statistic d-flex align-items-center bg-white has-shadow">
+                                <div class="icon bg-blue"><i class="fa fa-users"></i></div>
+                                <div class="text"><strong id="current_no_ic">0</strong><br><small>{{ _("NO IC") }}</small></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <canvas id="chart_num_learners"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <h3 class="h4">{{ _("Number of Requests")}}</h3>
+            </div>
+            <div class="card-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xl-2 col-sm-4">
+                            <div class="statistic d-flex align-items-center bg-white has-shadow">
+                                <div class="icon bg-blue" style="border-style: dotted;"><i class="fa fa-users"></i></div>
+                                <div class="text"><strong id="current_req_en_total">0</strong><br><small>{{ _("Total") }}</small></div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-sm-4">
+                            <div class="statistic d-flex align-items-center bg-white has-shadow">
+                                <div class="icon bg-green" style="border-style: dotted;"><i class="fa fa-users"></i></div>
+                                <div class="text"><strong id="current_req_en_processed">0</strong><br><small>{{ _("Processed") }}</small></div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-sm-4">
+                            <div class="statistic d-flex align-items-center bg-white has-shadow">
+                                <div class="icon bg-dark" style="border-style: dotted;"><i class="fa fa-users"></i></div>
+                                <div class="text"><strong id="current_req_en_pending">0</strong><br><small>{{ _("Pending") }}</small></div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-sm-4">
+                            <div class="statistic d-flex align-items-center bg-white has-shadow">
+                                <div class="icon bg-red" style="border-style: dotted;"><i class="fa fa-users"></i></div>
+                                <div class="text"><strong id="current_req_en_failed">0</strong><br><small>{{ _("Failed") }}</small></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xl-2 col-sm-4">
+                            <div class="statistic d-flex align-items-center bg-white has-shadow">
+                                <div class="icon bg-blue"><i class="fa fa-users"></i></div>
+                                <div class="text"><strong id="current_req_ver_total">0</strong><br><small>{{ _("Total") }}</small></div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-sm-4">
+                            <div class="statistic d-flex align-items-center bg-white has-shadow">
+                                <div class="icon bg-green"><i class="fa fa-users"></i></div>
+                                <div class="text"><strong id="current_req_ver_processed">0</strong><br><small>{{ _("Processed") }}</small></div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-sm-4">
+                            <div class="statistic d-flex align-items-center bg-white has-shadow">
+                                <div class="icon bg-dark"><i class="fa fa-users"></i></div>
+                                <div class="text"><strong id="current_req_ver_pending">0</strong><br><small>{{ _("Pending") }}</small></div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-sm-4">
+                            <div class="statistic d-flex align-items-center bg-white has-shadow">
+                                <div class="icon bg-red"><i class="fa fa-users"></i></div>
+                                <div class="text"><strong id="current_req_ver_failed">0</strong><br><small>{{ _("Failed") }}</small></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <canvas id="chart_num_requests"></canvas>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block body_scripts %}
+    <script src="{{ url_for('stats.static', filename='js/rt.js') }}"></script>
+{% endblock %}

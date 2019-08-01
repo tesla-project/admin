@@ -1,0 +1,111 @@
+<!--
+  ~ TeSLA Admin
+  ~ Copyright (C) 2019 Universitat Oberta de Catalunya
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<form id="form_addedit" method="post" action="{{ url_for('users.user_addedit', id=id) }}">
+    <div class="modal-header">
+        <h5 class="modal-title">{% if id == 0 %}{{ _('New user') }}{% else %}{{ _('Edit user') }}{% endif %}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        {% for field in form.errors %}
+            {% for error in form.errors[field] %}
+                <div class="alert alert-error">
+                    <strong>Error!</strong> {{error}}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            <label class="form-control-label">{{ form.username.label }}</label>
+            {% set class_val = 'form-control is-invalid' if form.username.errors else 'form-control' %}
+            {{ form.username(class_=class_val) }}
+            {% for error in form.username.errors %}
+                <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">{{ form.password.label }}</label>
+            {% set class_val = 'form-control is-invalid' if form.password.errors else 'form-control' %}
+            {{ form.password(class_=class_val) }}
+            {% for error in form.password.errors %}
+                <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">{{ form.repeat_password.label }}</label>
+            {% set class_val = 'form-control is-invalid' if form.repeat_password.errors else 'form-control' %}
+            {{ form.repeat_password(class_=class_val) }}
+            {% for error in form.repeat_password.errors %}
+                <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">{{ form.email.label }}</label>
+            {% set class_val = 'form-control is-invalid' if form.email.errors else 'form-control' %}
+            {{ form.email(class_=class_val) }}
+            {% for error in form.email.errors %}
+                <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">{{ form.active.label }}</label>
+            {% set class_val = 'form-control is-invalid' if form.active.errors else 'form-control' %}
+            {{ form.active(class_="checkbox-template") }}
+            {% for error in form.active.errors %}
+                <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">{{ form.roles.label }}</label>
+            <div class="clearfix"></div>
+            {% set class_val = 'form-control is-invalid' if form.roles.errors else 'form-control' %}
+            {{ form.roles(class_="select2") }}
+            {% for error in form.roles.errors %}
+                <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success btn-submit">Save</button>
+    </div>
+</form>
+<script>
+
+    $(".select2").select2({
+        width: '100%'
+    });
+
+    $("form#form_addedit").validate({
+        rules: {
+            repeat_password: {
+                equalTo: "#password"
+            }
+        }
+    });
+
+    $(".btn-submit").click(function(){
+        if ($("form#form_addedit").valid()) {
+            $("form#form_addedit").submit();
+        }
+    });
+
+</script>

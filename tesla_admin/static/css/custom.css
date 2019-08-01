@@ -1,0 +1,96 @@
+/*
+ * TeSLA Admin
+ * Copyright (C) 2019 Universitat Oberta de Catalunya
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+section{
+    padding: 10px 0;
+}
+
+.bootstrap-table{
+    width: 100%;
+}
+
+.select2 .selection{
+    width: 100%;
+}
+
+.modal-xxl{
+    max-width: 80% !important;
+}
+
+.btn-document-addedit,
+.btn-document-addedit:hover{
+    color: #ffffff;
+}
+
+.inline-results {
+    float: right;
+    position: relative;
+    height: 1.3em;
+}
+
+ul.gj-list-bootstrap li [data-role=display] {
+    color: #569ade;
+}
+
+ul.gj-list-bootstrap li [data-role=image] {
+    color: #569ade;
+}
+
+ul.gj-list-bootstrap li [data-role=expander] {
+    color: #569ade;
+}
+
+ul.gj-list-bootstrap li [data-role=display] .active {
+    color: #1b75d0;
+}
+
+.gj-tree-bootstrap-4 ul.gj-list-bootstrap li.active {
+    background-color: #e8e8e8;
+}
+
+.nounderline {
+    text-decoration: none !important
+}
+
+.instrument-result {
+    max-width: 35rem;
+}
+
+.instrument-result-header {
+    background-color: #006ea5;
+    color: whitesmoke;
+}
+
+.positive-facts {
+    background-color: #28a74563;
+}
+
+.negative-facts {
+    background-color: #ff0a0a36;
+}
+
+.neutral-facts {
+    background-color: #f9b11663;
+}
+
+.btn-adit-data {
+    margin-right: 0;
+    right: 4px;
+    position: absolute;
+    top: 4px;
+}

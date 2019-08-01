@@ -1,0 +1,173 @@
+/*
+ * TeSLA Admin
+ * Copyright (C) 2019 Universitat Oberta de Catalunya
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+(function($) {
+  $.extend($.summernote.lang, {
+    'uk-UA': {
+      font: {
+        bold: 'Напівжирний',
+        italic: 'Курсив',
+        underline: 'Підкреслений',
+        clear: 'Прибрати стилі шрифту',
+        height: 'Висота лінії',
+        name: 'Шрифт',
+        strikethrough: 'Закреслений',
+        subscript: 'Нижній індекс',
+        superscript: 'Верхній індекс',
+        size: 'Розмір шрифту'
+      },
+      image: {
+        image: 'Картинка',
+        insert: 'Вставити картинку',
+        resizeFull: 'Відновити розмір',
+        resizeHalf: 'Зменшити до 50%',
+        resizeQuarter: 'Зменшити до 25%',
+        floatLeft: 'Розташувати ліворуч',
+        floatRight: 'Розташувати праворуч',
+        floatNone: 'Початкове розташування',
+        shapeRounded: 'Форма: Заокруглена',
+        shapeCircle: 'Форма: Коло',
+        shapeThumbnail: 'Форма: Мініатюра',
+        shapeNone: 'Форма: Немає',
+        dragImageHere: 'Перетягніть сюди картинку',
+        dropImage: 'Перетягніть картинку',
+        selectFromFiles: 'Вибрати з файлів',
+        maximumFileSize: 'Maximum file size',
+        maximumFileSizeError: 'Maximum file size exceeded.',
+        url: 'URL картинки',
+        remove: 'Видалити картинку',
+        original: 'Original'
+      },
+      video: {
+        video: 'Відео',
+        videoLink: 'Посилання на відео',
+        insert: 'Вставити відео',
+        url: 'URL відео',
+        providers: '(YouTube, Vimeo, Vine, Instagram, DailyMotion чи Youku)'
+      },
+      link: {
+        link: 'Посилання',
+        insert: 'Вставити посилання',
+        unlink: 'Прибрати посилання',
+        edit: 'Редагувати',
+        textToDisplay: 'Текст, що відображається',
+        url: 'URL для переходу',
+        openInNewWindow: 'Відкривати у новому вікні'
+      },
+      table: {
+        table: 'Таблиця',
+        addRowAbove: 'Add row above',
+        addRowBelow: 'Add row below',
+        addColLeft: 'Add column left',
+        addColRight: 'Add column right',
+        delRow: 'Delete row',
+        delCol: 'Delete column',
+        delTable: 'Delete table'
+      },
+      hr: {
+        insert: 'Вставити горизонтальну лінію'
+      },
+      style: {
+        style: 'Стиль',
+        p: 'Нормальний',
+        blockquote: 'Цитата',
+        pre: 'Код',
+        h1: 'Заголовок 1',
+        h2: 'Заголовок 2',
+        h3: 'Заголовок 3',
+        h4: 'Заголовок 4',
+        h5: 'Заголовок 5',
+        h6: 'Заголовок 6'
+      },
+      lists: {
+        unordered: 'Маркований список',
+        ordered: 'Нумерований список'
+      },
+      options: {
+        help: 'Допомога',
+        fullscreen: 'На весь екран',
+        codeview: 'Початковий код'
+      },
+      paragraph: {
+        paragraph: 'Параграф',
+        outdent: 'Зменшити відступ',
+        indent: 'Збільшити відступ',
+        left: 'Вирівняти по лівому краю',
+        center: 'Вирівняти по центру',
+        right: 'Вирівняти по правому краю',
+        justify: 'Розтягнути по ширині'
+      },
+      color: {
+        recent: 'Останній колір',
+        more: 'Ще кольори',
+        background: 'Колір фону',
+        foreground: 'Колір шрифту',
+        transparent: 'Прозорий',
+        setTransparent: 'Зробити прозорим',
+        reset: 'Відновити',
+        resetToDefault: 'Відновити початкові'
+      },
+      shortcut: {
+        shortcuts: 'Комбінації клавіш',
+        close: 'Закрити',
+        textFormatting: 'Форматування тексту',
+        action: 'Дія',
+        paragraphFormatting: 'Форматування параграфу',
+        documentStyle: 'Стиль документу',
+        extraKeys: 'Extra keys'
+      },
+      help: {
+        'insertParagraph': 'Insert Paragraph',
+        'undo': 'Undoes the last command',
+        'redo': 'Redoes the last command',
+        'tab': 'Tab',
+        'untab': 'Untab',
+        'bold': 'Set a bold style',
+        'italic': 'Set a italic style',
+        'underline': 'Set a underline style',
+        'strikethrough': 'Set a strikethrough style',
+        'removeFormat': 'Clean a style',
+        'justifyLeft': 'Set left align',
+        'justifyCenter': 'Set center align',
+        'justifyRight': 'Set right align',
+        'justifyFull': 'Set full align',
+        'insertUnorderedList': 'Toggle unordered list',
+        'insertOrderedList': 'Toggle ordered list',
+        'outdent': 'Outdent on current paragraph',
+        'indent': 'Indent on current paragraph',
+        'formatPara': 'Change current block\'s format as a paragraph(P tag)',
+        'formatH1': 'Change current block\'s format as H1',
+        'formatH2': 'Change current block\'s format as H2',
+        'formatH3': 'Change current block\'s format as H3',
+        'formatH4': 'Change current block\'s format as H4',
+        'formatH5': 'Change current block\'s format as H5',
+        'formatH6': 'Change current block\'s format as H6',
+        'insertHorizontalRule': 'Insert horizontal rule',
+        'linkDialog.show': 'Show Link Dialog'
+      },
+      history: {
+        undo: 'Відмінити',
+        redo: 'Повторити'
+      },
+      specialChar: {
+        specialChar: 'SPECIAL CHARACTERS',
+        select: 'Select Special characters'
+      }
+    }
+  });
+})(jQuery);

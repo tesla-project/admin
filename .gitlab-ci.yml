@@ -1,0 +1,17 @@
+before_script:
+  - python -V
+  - docker info
+  - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  - git submodule init tesla_models
+  - git submodule update tesla_models
+  - cd tesla_models
+  - git pull origin master
+  - cd ..
+
+build-images:
+  stage: build
+  script:
+    - docker build --pull --no-cache -t "$CI_REGISTRY_IMAGE" -f docker/Dockerfile .
+    - docker push "$CI_REGISTRY_IMAGE"
+  only:
+    - master

@@ -1,0 +1,83 @@
+{% extends "report_layout.html" %}
+{% block title %}{{ _('Reports')}}{% endblock %}
+{% block header_css %}
+    <!--
+  ~ TeSLA Admin
+  ~ Copyright (C) 2019 Universitat Oberta de Catalunya
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap-table/bootstrap-table.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/OwlCarousel2/assets/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/OwlCarousel2/assets/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('reports.static', filename='css/reports.css') }}">
+{% endblock %}
+{% block sections %}
+    <div id="loader"></div>
+    <div id="enrolment"></div>
+    <div id="request"></div>
+{% endblock %}
+{% block body_scripts %}
+    <script type="text/javascript">
+        var translations = {
+            FR_TITLE_ENROLLMENT_CARD: '{{ _('Enrolment faces')}}',
+            FR_TITLE_NO_FACE: '{{_('No face detected')}}',
+            FR_DESC_NO_FACE: '{{_('We were not able to detect any face on this image. It can be because the face is not visible, or becaues the learner is not in front of the computer')}}',
+            FR_TITLE_MULT_FACE: '{{_('Detected multiple faces')}}',
+            FR_DESC_MULT_FACE: '{{_('Multiple faces detected in the image.')}}',
+            FR_TITLE_NO_RECON: '{{_('Not recognized')}}',
+            FR_DESC_NO_RECON: '{{_('Learner not recognized in the image.')}}',
+            FR_TITLE_DETAILS_CARD: '{{_('Frames')}}',
+            FR_CHART_TITLE_NO_FACE: '{{_('No Face')}}',
+            FR_CHART_TITLE_NO_RECOG: '{{_('No Recognized')}}',
+            FR_CHART_TITLE_MULT_FACES: '{{_('Multiple faces')}}',
+            FR_CHART_TITLE: '{{_('Frame results')}}',
+            FR_CHART_X_LEGEND: '{{_('Frame')}}',
+        };
+
+        function gettext(key) {
+            return translations[key];
+        }
+    </script>
+
+    {% if instrument.id == 1 %}
+    <script src="{{ url_for('reports.static', filename='js/viewer/tfr.js') }}"></script>
+    {% endif %}
+    <script type="text/javascript">
+        {% if object.parent_id is defined %}
+            var url = '{{ url_for('reports.get_course_audit_ajax', course_id=object.id, instrument_id=instrument.id, tesla_id=tesla_id) }}';
+        {% else %}
+            var url = '{{ url_for('reports.get_activity_audit_ajax', activity_id=object.id, instrument_id=instrument.id, tesla_id=tesla_id) }}';
+        {% endif %}
+        $(function () {
+            $('#loader').show();
+            $.ajax(url, {
+                method: 'GET'
+            }).done(function(data) {
+                var json = {audit_data: data};
+                $('#loader').hide();
+                buildInterface(json);
+            }).fail(function() {
+                $('#loader').hide();
+            });
+        });
+    </script>
+    <script src="{{ url_for('static', filename='vendor/bootstrap-table/bootstrap-table.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/bootstrap-table/locale/bootstrap-table-en-US.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/OwlCarousel2/owl.carousel.min.js') }}"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="{{ url_for('static', filename='vendor/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
+    <script src="{{ url_for('reports.static', filename='js/learner_instrument_audit.js') }}"></script>
+{% endblock %}

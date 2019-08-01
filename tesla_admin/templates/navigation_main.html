@@ -1,0 +1,101 @@
+<!--
+  ~ TeSLA Admin
+  ~ Copyright (C) 2019 Universitat Oberta de Catalunya
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<header class="header">
+    <nav class="navbar">
+        <!-- Search Box-->
+        <div class="search-box">
+            <button class="dismiss"><i class="icon-close"></i></button>
+            <form id="searchForm" action="#" role="search">
+                <input type="search" placeholder="{{ _('What are you looking for...') }}" class="form-control">
+            </form>
+        </div>
+
+        <div class="container-fluid">
+            <div class="navbar-holder d-flex align-items-center justify-content-between">
+                <!-- Navbar Header-->
+                <div class="navbar-header">
+                    <!-- Navbar Brand --><a href="{{ url_for('home')}}" class="navbar-brand">
+                    <div class="brand-text brand-big"><span>TeSLA </span><strong>Admin</strong></div>
+                    <div class="brand-text brand-small"><strong>TeSLA</strong></div></a>
+                    <!-- Toggle Button-->
+                    <a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>
+                </div>
+
+                <!-- Navbar Menu -->
+                <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+                    {% if current_user.is_authenticated %}
+                        <!-- Search-->
+                        <li class="nav-item d-flex align-items-center"><a id="search" href="#"><i class="icon-search"></i></a></li>
+                        <!-- Notifications-->
+                        <li class="nav-item dropdown">
+                            <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link">
+                                <i class="far fa-bell"></i>
+                                {% if notifications|length > 0 %}
+                                    <span class="badge bg-red">{{ notifications|length}}</span>
+                                {% endif %}
+                            </a>
+                            <ul aria-labelledby="notifications" class="dropdown-menu">
+                                {% for item in notifications %}
+                                    {% include "item_template/notification.html" %}
+                                {% endfor %}
+                                <li>
+                                    <a rel="nofollow" href="#" class="dropdown-item all-notifications text-center">
+                                        <strong>{{ _('View all notifications') }}</strong>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Messages -->
+                        <li class="nav-item dropdown">
+                            <a id="messages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link">
+                                <i class="far fa-envelope"></i>
+                                {% if messages|length > 0 %}
+                                    <span class="badge bg-orange">{{ messages|length}}</span>
+                                {% endif %}
+                            </a>
+                            <ul aria-labelledby="notifications" class="dropdown-menu">
+                                {% for item in messages %}
+                                    {% include "item_template/message.html" %}
+                                {% endfor %}
+                                <li>
+                                    <a rel="nofollow" href="#" class="dropdown-item all-notifications text-center">
+                                        <strong>{{ _('View all messages') }}</strong>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    {% endif %}
+                    <!-- Logout    -->
+                    {% if current_user.is_authenticated %}
+                        <li class="nav-item">
+                            <a href="{{ url_for('security.logout') }}" class="nav-link logout">{{ _('Logout') }} {{current_user.username}}<i class="fa fa-sign-out-alt"></i></a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('security.login') }}">{{ _('Login') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('security.register') }}">{{ _('Register') }}</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

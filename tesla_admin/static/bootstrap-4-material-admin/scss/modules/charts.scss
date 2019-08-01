@@ -1,0 +1,98 @@
+/*!
+ * TeSLA Admin
+ * Copyright (C) 2019 Universitat Oberta de Catalunya
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+section.charts {
+
+    div[class*="col-"] {
+        margin-bottom: 30px;
+    }
+
+    header {
+        padding: 30px 0;
+    }
+
+    div[class*="col-"] {
+        margin-bottom: 0;
+    }
+}
+
+/*
+* ==========================================================
+*     LINE CHART
+* ==========================================================
+*/
+.line-chart-example {
+    .card-block {
+        padding: 20px;
+    }
+}
+
+/*
+* ==========================================================
+*     POLAR CHART
+* ==========================================================
+*/
+.bar-chart-example {
+
+}
+/*
+* ==========================================================
+*     POLAR CHART
+* ==========================================================
+*/
+.polar-chart-example {
+    canvas {
+        max-width: 350px;
+        max-height: 350px;
+        margin: 20px auto;
+    }
+}
+/*
+* ==========================================================
+*     PIE CHART
+* ==========================================================
+*/
+.pie-chart-example {
+    canvas {
+        max-width: 350px;
+        max-height: 350px;
+        margin: 15px auto;
+    }
+}
+/*
+* ==========================================================
+*     RADAR CHART
+* ==========================================================
+*/
+.radar-chart-example {
+    canvas {
+        max-width: 350px;
+        max-height: 350px;
+        margin: 20px auto;
+    }
+}
+
+
+/* FORMS MEDIAQUERIES -------------------------- */
+@include media-breakpoint-down(md) {
+    section.charts {
+        h2 {
+            font-size: 1rem;
+        }
+    }
+}

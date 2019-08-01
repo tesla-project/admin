@@ -1,0 +1,91 @@
+<!--
+  ~ TeSLA Admin
+  ~ Copyright (C) 2019 Universitat Oberta de Catalunya
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<form method="post" action="{{ url_for('system.management_environment_save', type=type, id=id) }}" id="form_environment">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{ _('Edit') }} {{ _(type) }} {{ _('environment') }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        {% if all_config['dependencies']|length > 0 %}
+                        <h3> General environment </h3>
+                        {% endif %}
+                        {% for fields in all_config['config'] %}
+                            <div class="form-group">
+                                <label class="form-control-label">{{ fields['key'] }}</label>
+                                <input type="{{ fields['type'] }}" class="form-control" value="{{ fields['value'] }}" name="general[{{ fields['key'] }}]" id="general[{{ fields['key'] }}]" {% if fields['required'] == True %}required="required"{% endif %}/>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% if all_config['dependencies']|length > 0 %}
+                    <div class="row">
+                        <div class="col-12">
+                            <h3>{{ _("Dependencies") }}</h3>
+                            <ul class="nav nav-tabs" id="dependencies" role="tablist">
+                                {% for dependency_name in all_config['dependencies'] %}
+                                <li class="nav-item">
+                                    <a class="nav-link {% if loop.index==1 %}active{% endif %}" href="#{{ dependency_name }}" data-toggle="tab" role="tab" aria-controls="{{ dependency_name }}" aria-selected="{% if loop.index==1 %}true{% else %}false{% endif %}"><i class="{{ config_icons[dependency_name] }}"></i> {{ dependency_name }}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div class="tab-content mt-2" id="dependencies-tab">
+
+                        {% for dependency_name in all_config['dependencies'] %}
+                            <div class="tab-pane fade {% if loop.index==1 %}show active{% endif %}" id="{{ dependency_name }}" role="tabpanel" aria-labelledby="{{ dependency_name }}-tab">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h3><i class="{{ config_icons[dependency_name] }}"></i> {{ dependency_name }}</h3>
+
+                                        {% for fields in all_config['dependencies'][dependency_name] %}
+
+                                            <div class="form-group">
+                                                <label class="form-control-label">{{ fields['key'] }}</label>
+                                                <input type="{{ fields['type'] }}" class="form-control" value="{{ fields['value'] }}" name="dependencies[{{ dependency_name }}][{{ fields['key'] }}]" id="dependencies[{{ dependency_name }}][{{ fields['key'] }}]" {{ fields['required'] }} />
+                                                <div class="invalid-feedback"></div>
+                                            </div>
+
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary btn-success">Save changes</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    $("#form_environment").validate();
+</script>

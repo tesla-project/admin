@@ -1,0 +1,54 @@
+{% extends "sections/learner_data.html" %}
+{% block learner_data %}
+    {{ super() }}
+    <!--
+  ~ TeSLA Admin
+  ~ Copyright (C) 2019 Universitat Oberta de Catalunya
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<p><b>{{ _('Number of courses:') }}</b> <label id="current_learner_num_courses"></label></p>
+    <p><b>{{ _('Number of activities:') }}</b> <label id="current_learner_num_activities"></label></p>
+    <div class="table-responsive panel panel-default">
+        <table class="table table-bordered table-striped table-hover"
+               id="table_instrument_data"
+               >
+            <thead>
+                <tr>
+                    <th rowspan="2" data-field="acronym" data-sortable="true">{{ _('Acronym')}}</th>
+                    <th rowspan="2" data-field="name" data-align="left" data-sortable="true">{{ _('Description') }}</th>
+                    <th rowspan="2" data-field="enrolment" data-align="left" data-sortable="true">{{_('Enrolment') }}</th>
+                    <th colspan="4" data-field="enrolment" data-align="left" data-sortable="true">{{_('Enrolment') }}</th>
+                    <th colspan="4" data-field="enrolment" data-align="left" data-sortable="true">{{_('Verification') }}</th>
+                    <th rowspan="2" data-field="results" data-align="left" data-sortable="false" data-formatter="result_plot">{{ _('Results') }}</th>
+                </tr>
+                <tr>
+                    <th data-field="requests.enrolment.processed" data-align="left" data-sortable="true">{{ _('Processed') }}</th>
+                    <th data-field="requests.enrolment.pending" data-align="left" data-sortable="true">{{ _('Pending') }}</th>
+                    <th data-field="requests.enrolment.failed" data-align="left" data-sortable="true">{{ _('Failed') }}</th>
+                    <th data-field="requests.enrolment.timeout" data-align="left" data-sortable="true">{{ _('Timeout') }}</th>
+                    <th data-field="requests.verification.processed" data-align="left" data-sortable="true">{{ _('Processed') }}</th>
+                    <th data-field="requests.verification.pending" data-align="left" data-sortable="true">{{ _('Pending') }}</th>
+                    <th data-field="requests.verification.failed" data-align="left" data-sortable="true">{{ _('Failed') }}</th>
+                    <th data-field="requests.verification.timeout" data-align="left" data-sortable="true">{{ _('Timeout') }}</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+    <button type="button" class="btn btn-danger delete-learner">{{ _('Delete Learner') }}</button>
+{% endblock %}

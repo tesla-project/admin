@@ -1,0 +1,100 @@
+<!--
+  ~ TeSLA Admin
+  ~ Copyright (C) 2019 Universitat Oberta de Catalunya
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<section class="dashboard-counts no-padding-bottom">
+    <div class="container-fluid">
+        <div class="row bg-white has-shadow">
+            Instrument Thresholds
+        </div>
+        <div class="row bg-white has-shadow">
+
+            <div class="col-12">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>{{ _("Instrument") }}</th>
+                        <th>{{ _("Low") }}</th>
+                        <th>{{ _("Medium") }}</th>
+                        <th>{{ _("High") }}</th>
+                        <th>{{ _("Audit data") }}</th>
+                        <th>{{ _("Actions") }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for instrument in instruments %}
+                            <tr>
+                                <td>{{ instrument.name }}</td>
+                                <td>{{ instrument.thresholds.low }}</td>
+                                <td>{{ instrument.thresholds.medium }}</td>
+                                <td>{{ instrument.thresholds.high }}</td>
+                                <td>{{ instrument.thresholds.audit_level }}</td>
+                                <td><button type="button" class="btn btn-threshold-edit btn-success btn-xs" data-entity-id="{{ instrument.id }}" data-low="{{ instrument.thresholds.low }}" data-middle="{{ instrument.thresholds.middle }}" data-high="{{ instrument.thresholds.high }}" data-audit-level="{{ instrument.thresholds.audit_level }}"><i class="fa fa-edit"></i></button></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal" tabindex="-1" role="dialog" id="modal_thresholds">
+    <form method="post" action="#" id="form_thresholds">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{ _('Edit instrument thresholds') }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-control-label">{{ _('Low') }}</label>
+                    <input type="number" class="form-control" min="0" max="1" value="0.5" required name="threshold_low" id="thresold_low" />
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label">{{ _('Medium') }}</label>
+                    <input type="number"  class="form-control"  min="0" max="1" value="0.65" required name="threshold_medium" id="threshold_medium" />
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label">{{ _('High') }}</label>
+                    <input type="number"  class="form-control"  min="0" max="1" value="0.8" required name="threshold_high" id="threshold_high" />
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label">{{ _('Audit level') }}</label>
+                    <select class="form-control" id="threshold_audit_level" name="threshold_audit_level" required>
+                        <option value="low">{{ _('Low') }}</option>
+                        <option value="medium" selected>{{ _('Medium') }}</option>
+                        <option value="high">{{ _('High') }}</option>
+                    </select>
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btn-success btn-thresholds-submit">Save changes</button>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>

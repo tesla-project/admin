@@ -1,0 +1,45 @@
+<!--
+  ~ TeSLA Admin
+  ~ Copyright (C) 2019 Universitat Oberta de Catalunya
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<li>
+    <a rel="nofollow" href="#messageModal" data-toggle="modal" data-target="#messageModal" data-message-id="{{ item.id }}" class="dropdown-item d-flex">
+        <div class="msg-profile">
+            {% if item.error_level %}
+                {% if item.error_level == 0 %}
+                    {% set class_val = 'bg-success' %}
+                {% elif item.error_level == 1 %}
+                    {% set class_val = 'bg-warning' %}
+                {% elif item.error_level == 2 %}
+                    {% set class_val = 'bg-danger' %}
+                {% else %}
+                    {% set class_val = '' %}
+                {% endif %}
+            {% else %}
+                {% set class_val = '' %}
+            {% endif %}
+            {% if item.type.startswith("TASK_") %}
+                <i class="fas fa-tasks img-fluid rounded-circle {{ class_val }}"></i>
+            {% else %}
+                <i class="fas fa-question img-fluid rounded-circle {{ class_val }}"></i>
+            {% endif %}
+        </div>
+        <div class="msg-body">
+            <h3 class="h5">{{ item.subject }}</h3><span>{{ moment(item.created).fromNow() }}</span>
+        </div>
+    </a>
+</li>

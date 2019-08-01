@@ -1,0 +1,132 @@
+<!--
+  ~ TeSLA Admin
+  ~ Copyright (C) 2019 Universitat Oberta de Catalunya
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<tr>
+    {% if object.parent_id is defined %}
+        <td scope="row"><a href="{{url_for("reports.course_learner_audit", course_id=object.id, tesla_id=learner.tesla_id)}}">{{ learner.tesla_id }}</a></td>
+    {% else %}
+        <td scope="row"><a href="{{url_for("reports.activity_learner_audit", activity_id=object.id, tesla_id=learner.tesla_id)}}">{{ learner.tesla_id }}</a></td>
+    {% endif %}
+    <td>
+        {% if learner.stats.levels.auth == 0 %}
+            <i class="fa fa-user" style="color: lightgray;"></i>
+        {% elif learner.stats.levels.auth == 1 %}
+            <i class="fa fa-user" style="color: orangered;"></i>
+        {% elif learner.stats.levels.auth == 2 %}
+            <i class="fa fa-user" style="color: orange;"></i>
+        {% elif learner.stats.levels.auth == 3 %}
+            <i class="fa fa-user" style="color: mediumseagreen;"></i>
+        {% endif %}
+        {% if learner.stats.levels.content == 0 %}
+            <i class="fa fa-file-alt" style="color: lightgray;"></i>
+        {% elif learner.stats.levels.content == 1 %}
+            <i class="fa fa-file-alt" style="color: orangered;"></i>
+        {% elif learner.stats.levels.content == 2 %}
+            <i class="fa fa-file-alt" style="color: orange;"></i>
+        {% elif learner.stats.levels.content == 3 %}
+            <i class="fa fa-file-alt" style="color: mediumseagreen;"></i>
+        {% endif %}
+        {% if learner.stats.levels.security == 0 %}
+            <i class="fa fa-user-secret" style="color: lightgray;"></i>
+        {% elif learner.stats.levels.security == 1 %}
+            <i class="fa fa-user-secret" style="color: orangered;"></i>
+        {% elif learner.stats.levels.security == 2 %}
+            <i class="fa fa-user-secret" style="color: orange;"></i>
+        {% elif learner.stats.levels.security == 3 %}
+            <i class="fa fa-user-secret" style="color: mediumseagreen;"></i>
+        {% endif %}
+    </td>
+    {% for ins in instruments %}
+        {% if learner.instruments[ins.id] %}
+            {% if ins.requires_enrollment %}
+                {% if learner.instruments[ins.id].enrolment_percentage is number %}
+                    <td>{{ (learner.instruments[ins.id].enrolment_percentage * 100) | round | int}}%</td>
+                {% else %}
+                    <td> - </td>
+                {% endif %}
+                {% if learner.stats.instruments[ins.id].confidence is number %}
+                    <td>{{ (learner.stats.instruments[ins.id].confidence * 100) | round | int}}%</td>
+                {% else %}
+                    <td> - </td>
+                {% endif %}
+            {% else %}
+                <td colspan="2">{{ (learner.stats.instruments[ins.id].confidence * 100) | round | int}}%</td>
+            {% endif %}
+            {% if learner.instruments[ins.id].average is number %}
+                <td>{{ (learner.instruments[ins.id].average * 100) | round | int}}%</td>
+            {% else %}
+                <td> - </td>
+            {% endif %}
+            <td>
+                {% if ins.id in [1, 3, 5, 7] %}
+                    {% if learner.stats.instruments[ins.id].level == 0 %}
+                        <i class="fa fa-user" style="color: lightgray;"></i>
+                    {% elif learner.stats.instruments[ins.id].level == 1 %}
+                        <i class="fa fa-user" style="color: orangered;"></i>
+                    {% elif learner.stats.instruments[ins.id].level == 2 %}
+                        <i class="fa fa-user" style="color: orange;"></i>
+                    {% elif learner.stats.instruments[ins.id].level == 3 %}
+                        <i class="fa fa-user" style="color: mediumseagreen;"></i>
+                    {% endif %}
+                {% endif %}
+                {% if ins.id in [6, 7] %}
+                    {% if learner.stats.instruments[ins.id].level == 0 %}
+                        <i class="fa fa-file-alt" style="color: lightgray;"></i>
+                    {% elif learner.stats.instruments[ins.id].level == 1 %}
+                        <i class="fa fa-file-alt" style="color: orangered;"></i>
+                    {% elif learner.stats.instruments[ins.id].level == 2 %}
+                        <i class="fa fa-file-alt" style="color: orange;"></i>
+                    {% elif learner.stats.instruments[ins.id].level == 3 %}
+                        <i class="fa fa-file-alt" style="color: mediumseagreen;"></i>
+                    {% endif %}
+                {% endif %}
+                {% if ins.id in [2, 4] %}
+                    {% if learner.stats.instruments[ins.id].level == 0 %}
+                        <i class="fa fa-user-secret" style="color: lightgray;"></i>
+                    {% elif learner.stats.instruments[ins.id].level == 1 %}
+                        <i class="fa fa-user-secret" style="color: orangered;"></i>
+                    {% elif learner.stats.instruments[ins.id].level == 2 %}
+                        <i class="fa fa-user-secret" style="color: orange;"></i>
+                    {% elif learner.stats.instruments[ins.id].level == 3 %}
+                        <i class="fa fa-user-secret" style="color: mediumseagreen;"></i>
+                    {% endif %}
+                {% endif %}
+            </td>
+        {% else %}
+            {% if ins.requires_enrollment %}
+                <td> - </td>
+                <td> - </td>
+                <td> - </td>
+            {% else %}
+                <td colspan="2"> - </td>
+                <td> - </td>
+            {% endif %}
+            <td>
+                {% if ins.id in [1, 3, 5, 7] %}
+                    <i class="fa fa-user" style="color: lightgray;"></i>
+                {% endif %}
+                {% if ins.id  in [6, 7] %}
+                    <i class="fa fa-file-alt" style="color: lightgray;"></i>
+                {% endif %}
+                {% if ins.id  in [2, 4] %}
+                    <i class="fa fa-user-secret" style="color: lightgray;"></i>
+                {% endif %}
+            </td>
+        {% endif%}
+    {% endfor %}
+</tr>

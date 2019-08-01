@@ -1,0 +1,40 @@
+/*
+ * TeSLA Admin
+ * Copyright (C) 2019 Universitat Oberta de Catalunya
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/**
+ * @author vincent loh <vincent.ml@gmail.com>
+ * @version: v1.0.0
+ * https://github.com/vinzloh/bootstrap-table/
+ * Sticky header for bootstrap-table
+ */
+
+.fix-sticky {
+    position: fixed;
+    z-index: 100;
+}
+.fix-sticky thead {
+    background: #fff;
+}
+
+.fix-sticky thead th,
+.fix-sticky thead th:first-child {
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid #eee;
+    border-radius: 0;
+}

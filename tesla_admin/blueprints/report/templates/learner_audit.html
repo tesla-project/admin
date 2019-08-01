@@ -1,0 +1,115 @@
+{% extends "report_layout.html" %}
+{% block title %}{{ _('Reports')}}{% endblock %}
+{% block header_css %}
+    <!--
+  ~ TeSLA Admin
+  ~ Copyright (C) 2019 Universitat Oberta de Catalunya
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap-table/bootstrap-table.min.css') }}">
+{% endblock %}
+{% block sections %}
+    <div class="table-responsive">
+        <table class="table table-bordered table-sm table-striped text-center">
+            {% set num_cols = instruments|length * 4 %}
+            <thead>
+                <tr>
+                    <th scope="col" colspan="{{ num_cols + 2 }}">{{ object.description }}</th>
+                </tr>
+                <tr>
+                    <th scope="col" rowspan="3">TeSLA ID</th>
+                    <th scope="col" rowspan="3">{{_('Summary')}}</th>
+                    <th scope="col" colspan="{{ num_cols }}">{{ _("Instruments") }}</th>
+                </tr>
+                <tr>
+                    {% for ins in instruments %}
+                        <th scope="col" colspan="4">{{ins.acronym}}</th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    {% for ins in instruments %}
+                        {% if ins.requires_enrollment %}
+                            <th scope="col">{{_("Enrolment")}}</th>
+                            <th scope="col">{{_("Confidence")}}</th>
+                            <th scope="col">{{_("Result")}}</th>
+                            <th scope="col">{{_("Summary")}}</th>
+                        {% else %}
+                            <th scope="col" colspan="2">{{_("Confidence")}}</th>
+                            <th scope="col">{{_("Result")}}</th>
+                            <th scope="col">{{_("Summary")}}</th>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {% include "sections/items/learner_results_table_row.html" %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="temporal-results responsive-plot" id="temporal_results" style="min-height: 30vh"></div>
+    <div class="card-deck">
+        {% for ins in instruments %}
+            {% if learner.instruments[ins.id] %}
+                <div class="card instrument-result">
+                    <div class="card-header instrument-result-header card-title">
+                        <b>{{ins.acronym}}</b>
+                        {% if ins.id == 1 %}
+                            {% if object.parent_id is defined %}
+                                <a class="btn btn-light btn-adit-data" href="{{ url_for('reports.course_learner_audit_instrument', course_id=object.id, instrument_id=ins.id, tesla_id=tesla_id) }}" role="button"><i class="fa fa-search"></i></a>
+                            {% else %}
+                                <a class="btn btn-light btn-adit-data" href="{{ url_for('reports.activity_learner_audit_instrument', activity_id=object.id, instrument_id=ins.id, tesla_id=tesla_id) }}" role="button"><i class="fa fa-search"></i></a>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <div class="learner-histogram responsive-plot" id="learner_histogram_{{ins.id}}" data-id="{{ins.id}}"></div>
+                        <div class="context-histogram responsive-plot" id="context_histogram_{{ins.id}}" data-id="{{ins.id}}"></div>
+                    </div>
+                    {% include "sections/items/learner_audit_facts.html" %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}
+{% block body_scripts %}
+    <script type="text/javascript">
+        var instrument_data = {};
+        {% for ins in instruments %}
+            {% if learner.instruments[ins.id] %}
+                instrument_data[{{ins.id}}] = {
+                    "acronym": '{{context_statistics[ins.id].aronym|safe}}',
+                    "learner_histogram": {{learner.stats.instruments[ins.id].histogram}},
+                    "context_histogram": {{context_statistics[ins.id].histogram}},
+                    "polarity": {{learner.stats.instruments[ins.id].instrument_polarity}},
+                    "temporal": {{context_statistics[ins.id].temporal|safe}},
+                    {% if learner.stats.instruments[ins.id].result_bean is number %}
+                    "result_bean": {{learner.stats.instruments[ins.id].result_bean}}
+                    {% else %}
+                    "result_bean": null
+                    {% endif %}
+                };
+            {% endif %}
+        {% endfor %}
+        var failed_requests = {{learner.failed_requests|safe}};
+    </script>
+    <script src="{{ url_for('static', filename='vendor/bootstrap-table/bootstrap-table.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/bootstrap-table/locale/bootstrap-table-en-US.js') }}"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="{{ url_for('static', filename='vendor/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
+    <script src="{{ url_for('reports.static', filename='js/learner_audit.js') }}"></script>
+{% endblock %}

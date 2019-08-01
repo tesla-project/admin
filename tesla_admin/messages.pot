@@ -1,0 +1,308 @@
+# Translations template for PROJECT.
+# Copyright (C) 2018 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2018-04-03 09:34+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.5.3\n"
+
+#: tesla_admin/blueprints/data/templates/activity.html:2
+#: tesla_admin/blueprints/data/templates/learner.html:2
+msgid "Data Management"
+msgstr ""
+
+#: tesla_admin/blueprints/informed_consent/templates/documents.html:2
+#: tesla_admin/blueprints/informed_consent/templates/versions.html:2
+msgid "Informed Consent Management"
+msgstr ""
+
+#: tesla_admin/blueprints/send/forms.py:30
+msgid "Description"
+msgstr ""
+
+#: tesla_admin/blueprints/send/forms.py:30
+msgid "Category description"
+msgstr ""
+
+#: tesla_admin/blueprints/send/forms.py:33
+msgid "Save"
+msgstr ""
+
+#: tesla_admin/blueprints/send/templates/categories.html:2
+#: tesla_admin/blueprints/send/templates/learners.html:2
+msgid "Special Educational Needs and Disabilities"
+msgstr ""
+
+#: tesla_admin/blueprints/send/templates/categories.html:7
+msgid "Category"
+msgstr ""
+
+#: tesla_admin/blueprints/send/templates/categories.html:13
+msgid "Select one category to edit"
+msgstr ""
+
+#: tesla_admin/blueprints/send/templates/categories.html:23
+msgid "New"
+msgstr ""
+
+#: tesla_admin/blueprints/send/templates/categories.html:36
+msgid "Details"
+msgstr ""
+
+#: tesla_admin/blueprints/send/templates/categories.html:67
+msgid "Activate required features"
+msgstr ""
+
+#: tesla_admin/blueprints/send/templates/categories.html:71
+msgid "Disable instruments"
+msgstr ""
+
+#: tesla_admin/blueprints/send/templates/sections/send_learner_data.html:13
+msgid "Activated features"
+msgstr ""
+
+#: tesla_admin/blueprints/send/templates/sections/send_learner_data.html:16
+msgid "Disabled instruments"
+msgstr ""
+
+#: tesla_admin/blueprints/stats/templates/activities.html:2
+#: tesla_admin/templates/navigation_side.html:88
+msgid "Activities"
+msgstr ""
+
+#: tesla_admin/blueprints/stats/templates/learners_stats.html:2
+#: tesla_admin/templates/navigation_side.html:30
+#: tesla_admin/templates/navigation_side.html:85
+msgid "Learners"
+msgstr ""
+
+#: tesla_admin/blueprints/stats/templates/rt.html:2
+#: tesla_admin/templates/navigation_side.html:82
+msgid "Real Time"
+msgstr ""
+
+#: tesla_admin/blueprints/stats/templates/rt.html:7
+msgid "Number of Learners"
+msgstr ""
+
+#: tesla_admin/blueprints/stats/templates/rt.html:17
+msgid "Number of Requests"
+msgstr ""
+
+#: tesla_admin/blueprints/system/templates/configuration.html:2
+msgid "System Configuration"
+msgstr ""
+
+#: tesla_admin/blueprints/system/templates/monitoring.html:5
+msgid "System Monitoring"
+msgstr ""
+
+#: tesla_admin/blueprints/system/templates/sections/instrument_stats.html:18
+msgid "Workers"
+msgstr ""
+
+#: tesla_admin/blueprints/system/templates/sections/instrument_stats.html:23
+msgid "This instrument is not deployed"
+msgstr ""
+
+#: tesla_admin/blueprints/system/templates/sections/instrument_stats.html:26
+msgid "The instrument is deployed, but no worker is detected"
+msgstr ""
+
+#: tesla_admin/blueprints/system/templates/sections/instrument_stats.html:31
+msgid "Pending"
+msgstr ""
+
+#: tesla_admin/blueprints/system/templates/sections/instrument_stats.html:36
+msgid "Velocity"
+msgstr ""
+
+#: tesla_admin/blueprints/system/templates/sections/instrument_stats.html:41
+msgid "Acceleration"
+msgstr ""
+
+#: tesla_admin/blueprints/users/forms.py:21
+#: tesla_admin/blueprints/users/templates/index.html:26
+msgid "Username"
+msgstr ""
+
+#: tesla_admin/blueprints/users/forms.py:22
+#: tesla_admin/blueprints/users/templates/index.html:25
+msgid "Email"
+msgstr ""
+
+#: tesla_admin/blueprints/users/forms.py:23
+#: tesla_admin/blueprints/users/templates/index.html:27
+msgid "Active"
+msgstr ""
+
+#: tesla_admin/blueprints/users/forms.py:24
+msgid "Roles"
+msgstr ""
+
+#: tesla_admin/blueprints/users/forms.py:25
+msgid "Password"
+msgstr ""
+
+#: tesla_admin/blueprints/users/templates/index.html:2
+#: tesla_admin/templates/navigation_side.html:22
+msgid "User Management"
+msgstr ""
+
+#: tesla_admin/blueprints/users/templates/index.html:13
+#: tesla_admin/blueprints/users/templates/user_addedit.html:3
+msgid "New user"
+msgstr ""
+
+#: tesla_admin/blueprints/users/templates/index.html:39
+msgid "Delete user"
+msgstr ""
+
+#: tesla_admin/blueprints/users/templates/index.html:45
+msgid "Are you sure?"
+msgstr ""
+
+#: tesla_admin/blueprints/users/templates/roles.html:2
+msgid "Roles Management"
+msgstr ""
+
+#: tesla_admin/blueprints/users/templates/user_addedit.html:3
+msgid "Edit user"
+msgstr ""
+
+#: tesla_admin/templates/layout.html:6 tesla_admin/templates/layout_full.html:6
+msgid "TeSLA Administration Portal"
+msgstr ""
+
+#: tesla_admin/templates/layout_full.html:38
+msgid "TeSLA"
+msgstr ""
+
+#: tesla_admin/templates/layout_full.html:40
+msgid ""
+"TeSLA Administrative Portal will allow you to access and manage "
+"institution information."
+msgstr ""
+
+#: tesla_admin/templates/navigation_main.html:7
+msgid "What are you looking for..."
+msgstr ""
+
+#: tesla_admin/templates/navigation_main.html:39
+msgid "view all notifications"
+msgstr ""
+
+#: tesla_admin/templates/navigation_main.html:54
+msgid "Read all messages"
+msgstr ""
+
+#: tesla_admin/templates/navigation_main.html:64
+msgid "Logout"
+msgstr ""
+
+#: tesla_admin/templates/navigation_main.html:68
+#: tesla_admin/templates/security/login_user.html:8
+#: tesla_admin/templates/security/send_login.html:11
+msgid "Login"
+msgstr ""
+
+#: tesla_admin/templates/navigation_main.html:71
+#: tesla_admin/templates/security/register_user.html:10
+msgid "Register"
+msgstr ""
+
+#: tesla_admin/templates/navigation_side.html:18
+msgid "Home"
+msgstr ""
+
+#: tesla_admin/templates/navigation_side.html:27
+msgid "SEND"
+msgstr ""
+
+#: tesla_admin/templates/navigation_side.html:33
+msgid "Categories"
+msgstr ""
+
+#: tesla_admin/templates/navigation_side.html:40
+msgid "Informed Consent"
+msgstr ""
+
+#: tesla_admin/templates/navigation_side.html:43
+msgid "Documents"
+msgstr ""
+
+#: tesla_admin/templates/navigation_side.html:46
+msgid "Versions"
+msgstr ""
+
+#: tesla_admin/templates/navigation_side.html:53
+msgid "Data"
+msgstr ""
+
+#: tesla_admin/templates/navigation_side.html:56
+msgid "Learner"
+msgstr ""
+
+#: tesla_admin/templates/navigation_side.html:59
+msgid "Activity"
+msgstr ""
+
+#: tesla_admin/templates/navigation_side.html:66
+msgid "System"
+msgstr ""
+
+#: tesla_admin/templates/navigation_side.html:69
+msgid "Monitoring"
+msgstr ""
+
+#: tesla_admin/templates/navigation_side.html:72
+msgid "Configuration"
+msgstr ""
+
+#: tesla_admin/templates/navigation_side.html:79
+msgid "Statistics"
+msgstr ""
+
+#: tesla_admin/templates/sections/find_learner.html:3
+msgid "Search learner"
+msgstr ""
+
+#: tesla_admin/templates/sections/find_learner.html:6
+msgid "Provide the e-mail of the learner to load available data"
+msgstr ""
+
+#: tesla_admin/templates/sections/find_learner.html:12
+msgid "Load"
+msgstr ""
+
+#: tesla_admin/templates/sections/learner_data.html:3
+msgid "Learner Data"
+msgstr ""
+
+#: tesla_admin/templates/security/change_password.html:11
+msgid "Change password"
+msgstr ""
+
+#: tesla_admin/templates/security/forgot_password.html:11
+msgid "Send password reset instructions"
+msgstr ""
+
+#: tesla_admin/templates/security/reset_password.html:11
+msgid "Reset password"
+msgstr ""
+
+#: tesla_admin/templates/security/send_confirmation.html:11
+msgid "Resend confirmation instructions"
+msgstr ""
+

@@ -1,0 +1,95 @@
+<!--
+  ~ TeSLA Admin
+  ~ Copyright (C) 2019 Universitat Oberta de Catalunya
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<form id="form_addedit" method="post" action="{{ url_for('informed_consent.informed_consent_addedit', id=id) }}">
+    <div class="modal-header">
+        <h5 class="modal-title">{% if id == 0 %}{{ _('New informed consent') }}{% else %}{{ _('Edit informed consent') }}{% endif %}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        {% for field in form.errors %}
+            {% for error in form.errors[field] %}
+                <div class="alert alert-error">
+                    <strong>Error!</strong> {{error}}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            <label class="form-control-label">{{ form.version.label }}</label>
+            {% set class_val = 'form-control is-invalid' if form.version.errors else 'form-control' %}
+            {{ form.version(class_=class_val) }}
+            {% for error in form.version.errors %}
+                <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">{{ form.valid_from.label }}</label>
+            {% set class_val = 'form-control is-invalid' if form.valid_from.errors else 'form-control' %}
+            {{ form.valid_from(class_=class_val) }}
+            {% for error in form.valid_from.errors %}
+                <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-success">Save</button>
+    </div>
+</form>
+<script>
+    $("#valid_from").datepicker({
+        format: {
+            toDisplay: function (date, format, language) {
+                var d = new Date(date);
+                //d.setDate(d.getDate() - 7);
+                //return d.toISOString();
+                month = d.getMonth()+1;
+                day = d.getDate();
+
+                if (month < 10) {
+                    month = '0'+month;
+                }
+
+                if (day < 10) {
+                    day = '0'+day;
+                }
+                return d.getFullYear()+"-"+month+"-"+day+" 00:00:00";
+            },
+            toValue: function (date, format, language) {
+                var d = new Date(date);
+                month = d.getMonth()+1;
+                day = d.getDate();
+
+                if (month < 10) {
+                    month = '0'+month;
+                }
+
+                if (day < 10) {
+                    day = '0'+day;
+                }
+                return d.getFullYear()+"-"+month+"-"+day+" 00:00:00";
+            }
+        }
+    });
+
+
+</script>

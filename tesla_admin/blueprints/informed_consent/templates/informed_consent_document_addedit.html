@@ -1,0 +1,96 @@
+<!--
+  ~ TeSLA Admin
+  ~ Copyright (C) 2019 Universitat Oberta de Catalunya
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<form id="form_addedit" method="post" action="{{ url_for('informed_consent.informed_consent_document_addedit', id=id) }}" enctype="multipart/form-data">
+    <div class="modal-header">
+        <h5 class="modal-title">{{ _('Informed consent - Documents') }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab-lang" role="tablist">
+                {% for language in sorted_languages %}
+                    <a class="nav-item nav-link{% if loop.index == 1 %} active{% endif %}" id="nav-lang-{{ language }}" data-toggle="tab" href="#lang-{{ language }}" role="tab" aria-controls="lang-{{ language }}" aria-selected="{% if loop.index == 1 %}true{% else %}false{% endif %}">
+                        {{ languages[language] }}
+                    </a>
+                {% endfor %}
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContentLang">
+            {% for language in sorted_languages %}
+            <div class="tab-pane fade{% if loop.index == 1 %} show active{% endif %}" id="lang-{{ language }}" role="tabpanel" aria-labelledby="nav-lang-{{ language }}">
+                {% set found = [] %}
+                {% for document in documents %}
+                    {% if document.language == language %}
+                        <div class="form-group">
+                            <label class="form-control-label">HTML</label>
+                            <textarea id="html_{{ language }}" name="html_{{ language }}">{{ document.html|safe }}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label">PDF</label>
+                            {% if document.pdf %}
+                                <a target="_blank" href="{{ url_for('informed_consent.document_pdf_download', language=language, consent_id=document.consent_id) }}"><i class="fa fa-download"></i></a><br/>
+                            {% endif %}
+                            <input type="file" name="pdf_{{ language }}" id="pdf_{{ language }}" />
+                        </div>
+                        {% if found.append('found') %}{% endif %}
+                    {% endif %}
+                {% endfor %}
+                {% if found|length == 0 %}
+                    <div class="form-group">
+                        <label class="form-control-label">HTML</label>
+                        <textarea class="form-control" id="html_{{ language }}" name="html_{{ language }}"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label">PDF</label>
+                        <input class="form-control" type="file" name="pdf_{{ language }}" id="pdf_{{ language }}" />
+                    </div>
+                    {% set found = True %}
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type="hidden" name="documents_sent" id="documents_sent" value="yes" />
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-success">Save</button>
+    </div>
+</form>
+<script>
+
+    $("textarea").summernote({
+        height: 500,
+        dialogsInBody: true,
+        disableDragAndDrop: true,
+        toolbar: [
+            // [groupName, [list of button]]
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['font', ['strikethrough', 'superscript', 'subscript']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['height', ['height']],
+            ['misc',['fullscreen', 'codeview']]
+        ]
+    });
+
+
+</script>

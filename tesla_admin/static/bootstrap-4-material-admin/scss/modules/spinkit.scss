@@ -1,0 +1,40 @@
+/*!
+ * TeSLA Admin
+ * Copyright (C) 2019 Universitat Oberta de Catalunya
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/*
+* ==========================================================
+*     SPINKIT PRELOADERS
+* ==========================================================
+*/
+
+$spinkit-spinner-margin: 0 !default;
+$spinkit-size: 40px !default;
+$spinkit-spinner-color: $brand-primary !default; 
+
+@import
+  "spinners/1-rotating-plane",
+  "spinners/2-double-bounce",
+  "spinners/3-wave",
+  "spinners/4-wandering-cubes",
+  "spinners/5-pulse",
+  "spinners/6-chasing-dots",
+  "spinners/7-three-bounce",
+  "spinners/8-circle",
+  "spinners/9-cube-grid",
+  "spinners/10-fading-circle",
+  "spinners/11-folding-cube";

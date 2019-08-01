@@ -1,0 +1,101 @@
+/*!
+ * TeSLA Admin
+ * Copyright (C) 2019 Universitat Oberta de Catalunya
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+// Pagination
+.pagination {
+  .page-item {
+    &.active {
+      .page-link {
+        @extend .z-depth-1;
+        transition: $pagination-active-transition;
+        border-radius: $border-radius-base;
+        background-color: $primary-color;
+        color: $white;
+        &:hover {
+          background-color: $primary-color;
+        }
+      }
+    }
+    &.disabled {
+      .page-link {
+        color: $pagination-page-item-disabled-color;
+      }
+    }
+    .page-link {
+      transition: $pagination-page-link-transition;
+      outline: 0;
+      border: 0;
+      background-color: transparent;
+      font-size: $pagination-page-link-font-size;
+      color: $pagination-page-link-color;
+      &:hover {
+        transition: $pagination-page-link-transition;
+        border-radius: $border-radius-base;
+        background-color: $pagination-page-link-hover-bg-color;
+      }
+      &:focus {
+        background-color: transparent;
+      }
+    }
+  }
+  &.pagination-lg {
+    .page-item {
+      .page-link {
+        font-size: $pagination-page-link-font-size-lg;
+      }
+    }
+  }
+  &.pagination-sm {
+    .page-item {
+      .page-link {
+        font-size: $pagination-page-link-font-size-sm;
+      }
+    }
+  }
+  &.pagination-circle {
+    .page-item {
+      .page-link {
+        margin-left: $pagination-circle-margin-x;
+        margin-right: $pagination-circle-margin-x;
+        border-radius: $pagination-circle-border-radius;
+        &:hover {
+          border-radius: $pagination-circle-border-radius;
+        }
+      }
+      &.active {
+        .page-link {
+          border-radius: $pagination-circle-border-radius;
+        }
+      }
+    }
+  }
+  @each $name, $color in $pagination-colors {
+    &.pg-#{$name} {
+      .page-item {
+        &.active {
+          .page-link {
+            background-color: $color;
+            &:hover {
+              background-color: $color;
+            }
+          }
+        }
+      }
+    }
+  }
+}

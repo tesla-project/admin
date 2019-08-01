@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+{% block title %}{{ _('Special Educational Needs and Disabilities') }}{% endblock %}
+{% block sections %}
+    <!--
+  ~ TeSLA Admin
+  ~ Copyright (C) 2019 Universitat Oberta de Catalunya
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<div class="col-lg-12">
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <h3 class="h4">{{ _("Category") }}</h3>
+            </div>
+            <div class="card-body d-flex justify-content-center">
+                <div class="category-search" style="width: 100%;">
+                    <form class="form">
+                        <div class="form-group">
+                            <label class="col-sm-3 form-control-label">{{ _('Select one category to edit') }}</label>
+                            <div class="col-lg-8 select">
+                                <div class="input-group">
+                                    <select id="categories" name="category" class="form-control">
+                                        <option value="-1"></option>
+                                        {% for c in categories %}
+                                            <option value="{{c.id}}">{{c.description}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="input-group-prepend">
+                                        <button type="button" class="btn btn-primary new_category">{{ _("New") }}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 category-details" {% if has_errors == False %}style="display: none;"{% endif %}>
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <h3 class="h4">{{ _("Details") }}</h3>
+            </div>
+            <div class="card-body d-flex justify-content-center">
+                <div class="pt-5 pb-5 category-form-loading" style="display: none;">
+                    <div class="sk-circle category-form-loading" style="display: none;">
+                        <div class="sk-circle1 sk-child category-form-loading" style="display: none;"></div>
+                        <div class="sk-circle2 sk-child category-form-loading" style="display: none;"></div>
+                        <div class="sk-circle3 sk-child category-form-loading" style="display: none;"></div>
+                        <div class="sk-circle4 sk-child category-form-loading" style="display: none;"></div>
+                        <div class="sk-circle5 sk-child category-form-loading" style="display: none;"></div>
+                        <div class="sk-circle6 sk-child category-form-loading" style="display: none;"></div>
+                        <div class="sk-circle7 sk-child category-form-loading" style="display: none;"></div>
+                        <div class="sk-circle8 sk-child category-form-loading" style="display: none;"></div>
+                        <div class="sk-circle9 sk-child category-form-loading" style="display: none;"></div>
+                        <div class="sk-circle10 sk-child category-form-loading" style="display: none;"></div>
+                        <div class="sk-circle11 sk-child category-form-loading" style="display: none;"></div>
+                        <div class="sk-circle12 sk-child category-form-loading" style="display: none;"></div>
+                    </div>
+                </div>
+                <form id="form_category" class="form category-form" method="post" style="width: 100%; {% if has_errors == False %}display: none;{% endif %}">
+                    {{ form.hidden_tag() }}
+                    <div class="form-group">
+                        <label class="form-control-label">{{ form.description.label }}</label>
+                            {% set class_val = 'form-control is-invalid' if form.description.errors else 'form-control' %}
+                            {{ form.description(class_=class_val) }}
+                            {% for error in form.description.errors %}
+                                <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-6">
+                            <label class="form-control-label">{{ _("Activate required features") }}</label>
+                            {{ form.options(class_="checkbox-template") }}
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="form-control-label">{{ _("Disable instruments") }}</label>
+                            {{ form.instruments(class_="checkbox-template") }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form.submit(class_="btn btn-primary")}}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block body_scripts %}
+    <script src="{{ url_for('send.static', filename='js/categories.js') }}"></script>
+{% endblock %}

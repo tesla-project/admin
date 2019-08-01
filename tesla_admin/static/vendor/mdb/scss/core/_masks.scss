@@ -1,0 +1,109 @@
+/*!
+ * TeSLA Admin
+ * Copyright (C) 2019 Universitat Oberta de Catalunya
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+// Masks
+// General properties
+.view {
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  .full-bg-img {
+    height: 100%;
+  }
+  .full-bg-img,
+  .full-bg-img video {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
+  .mask {
+    position: absolute;
+    top: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    background-attachment: fixed;
+  }
+  img, video {
+    position: relative;
+    display: block;
+  }
+  video {
+    &.video-intro {
+      z-index: -100;
+      top: 50%;
+      left: 50%;
+      transform: $intro-video-transform;
+      transition: $intro-video-transition opacity;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+    }
+  }
+}
+
+// Overlay
+.overlay {
+  .mask {
+    opacity: 0;
+    transition: $mask-overlay-transition;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+// Zoom
+.zoom {
+  img, video {
+    transition: $mask-zoom-transition;
+  }
+  &:hover {
+    img, video {
+      transform: $mask-zoom-transform;
+    }
+  }
+}
+
+// Patterns
+$patterns: (
+  1: "01",
+  2: "02",
+  3: "03",
+  4: "04",
+  5: "05",
+  6: "06",
+  7: "07",
+  8: "08",
+  9: "09"
+);
+
+@each $no, $filename in $patterns {
+  .pattern-#{$no} {
+    background: url("../img/overlays/#{$filename}.png");
+  }
+}
+
+// Full background
+.full-height,
+.full-height body,
+.full-height header,
+.full-height header .view {
+  height: 100%;
+}

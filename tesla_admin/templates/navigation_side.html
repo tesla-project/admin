@@ -1,0 +1,125 @@
+<!--
+  ~ TeSLA Admin
+  ~ Copyright (C) 2019 Universitat Oberta de Catalunya
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<nav class="side-navbar">
+    <!-- Sidebar Header-->
+    <!--<div class="sidebar-header d-flex align-items-center">
+        {% if current_user.is_authenticated %}
+            <div class="avatar">
+                <img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle">
+            </div>
+            <div class="title">
+                <h1 class="h4">Mark Stephen</h1>
+                <p>Web Designer</p>
+            </div>
+        {% endif %}
+    </div>-->
+
+    <!-- Sidebar Navidation Menus-->
+    <ul class="list-unstyled">
+        <li {% if not page or page=="home" %}class="active"{% endif %}>
+            <a href="{{ url_for('home') }}"> <i class="fa fa-home"></i>{{ _('Home') }} </a>
+        </li>
+        {% if current_user.has_role('Admin') %}
+            <li {% if page.startswith("users") %}class="active"{% endif %}>
+                <a href="{{ url_for('users.index') }}"> <i class="fa fa-users"></i>{{ _('User Management') }} </a>
+            </li>
+        {% endif %}
+        {% if current_user.has_role('Admin') %}
+            <li {% if page.startswith("send") %}class="active"{% endif %}>
+                <a href="#sendDropdown" aria-expanded="{% if page.startswith("send") %}true{% else %}false{% endif %}" data-toggle="collapse"> <i class="fab fa-accessible-icon"></i>{{ _('SEND') }} </a>
+                <ul id="sendDropdown" class="collapse list-unstyled {% if page.startswith("send") %}show{% endif %}">
+                    <li {% if page=="send.learners" %}class="active"{% endif %}>
+                        <a href="{{ url_for('send.learners') }}">{{ _('Learners') }}</a>
+                    </li>
+                    <li {% if page=="send.categories" %}class="active"{% endif %}>
+                        <a href="{{ url_for('send.categories') }}">{{ _('Categories') }}</a>
+                    </li>
+                </ul>
+            </li>
+        {% endif %}
+        {% if current_user.has_role('Admin') %}
+            <li {% if page.startswith("informed_consent") %}class="active"{% endif %}>
+                <a href="{{ url_for('informed_consent.index') }}"> <i class="fab fa-leanpub"></i>{{ _('Informed consent') }} </a>
+            </li>
+
+        {% endif %}
+        {% if current_user.has_role('Admin') %}
+            <li {% if page.startswith("data") %}class="active"{% endif %}>
+                <a href="#dataDropdown" aria-expanded="{% if page.startswith("data") %}true{% else %}false{% endif %}" data-toggle="collapse"> <i class="fa fa-database"></i>{{ _('Data') }} </a>
+                <ul id="dataDropdown" class="collapse list-unstyled {% if page.startswith("data") %}show{% endif %}">
+                    <li {% if page=="data.learner" %}class="active"{% endif %}>
+                        <a href="{{ url_for('data.learner') }}">{{ _('Learner') }}</a>
+                    </li>
+                    <li {% if page=="data.activity" %}class="active"{% endif %}>
+                        <a href="{{ url_for('data.activity') }}">{{ _('Activity') }}</a>
+                    </li>
+                    <li {% if page=="data.course" %}class="active"{% endif %}>
+                        <a href="{{ url_for('data.course') }}">{{ _('Course') }}</a>
+                    </li>
+                </ul>
+            </li>
+        {% endif %}
+        {% if current_user.has_role('Admin') %}
+            <li {% if page.startswith("system") %}class="active"{% endif %}>
+                <a href="#systemDropdown" aria-expanded="{% if page.startswith("system") %}true{% else %}false{% endif %}" data-toggle="collapse"> <i class="fa fa-cog"></i>{{ _('System') }} </a>
+                <ul id="systemDropdown" class="collapse list-unstyled {% if page.startswith("system") %}show{% endif %}">
+                    <li {% if page=="system.monitoring" %}class="active"{% endif %}>
+                        <a href="{{ url_for('system.monitoring') }}">{{ _('Monitoring') }}</a>
+                    </li>
+                    <li {% if page=="system.configuration" %}class="active"{% endif %}>
+                        <a href="{{ url_for('system.configuration') }}">{{ _('Configuration') }}</a>
+                    </li>
+                    <li {% if page=="system.vle" %}class="active"{% endif %}>
+                        <a href="{{ url_for('system.vle') }}">{{ _('VLE') }}</a>
+                    </li>
+                </ul>
+            </li>
+        {% endif %}
+        {% if current_user.has_role('Statistics') %}
+            <li {% if page.startswith("stats") %}class="active"{% endif %}>
+                <a href="#statsDropdown" aria-expanded="{% if page.startswith("stats") %}true{% else %}false{% endif %}" data-toggle="collapse"> <i class="fa fa-chart-line"></i>{{ _('Statistics') }} </a>
+                <ul id="statsDropdown" class="collapse list-unstyled {% if page.startswith("stats") %}show{% endif %}">
+                    <li {% if page=="stats.rt" %}class="active"{% endif %}>
+                        <a href="{{ url_for('stats.rt') }}">{{ _('Real Time') }}</a>
+                    </li>
+                    <li {% if page=="stats.learners" %}class="active"{% endif %}>
+                        <a href="{{ url_for('stats.learners_stats') }}">{{ _('Learners') }}</a>
+                    </li>
+                    <li {% if page=="stats.activities" %}class="active"{% endif %}>
+                        <a href="{{ url_for('stats.activities') }}">{{ _('Activities') }}</a>
+                    </li>
+                    <li {% if page=="stats.courses" %}class="active"{% endif %}>
+                        <a href="{{ url_for('stats.courses') }}">{{ _('Courses') }}</a>
+                    </li>
+                </ul>
+            </li>
+        {% endif %}
+        {% if current_user.has_role('Reporting') %}
+            <li {% if page.startswith("reports") %}class="active"{% endif %}>
+                <a href="#reportsDropdown" aria-expanded="{% if page.startswith("reports") %}true{% else %}false{% endif %}" data-toggle="collapse"> <i class="fa fa-file-alt"></i>{{ _('Reports') }} </a>
+                <ul id="reportsDropdown" class="collapse list-unstyled {% if page.startswith("reports") %}show{% endif %}">
+                    <li {% if page=="reports.list" %}class="active"{% endif %}>
+                        <a href="{{ url_for('reports.reports_index') }}">{{ _('List') }}</a>
+                    </li>
+                </ul>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
+

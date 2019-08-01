@@ -1,0 +1,73 @@
+<!--
+  ~ TeSLA Admin
+  ~ Copyright (C) 2019 Universitat Oberta de Catalunya
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <h4>{{ _('Course Statistics') }}</h4>
+        </div>
+        <div class="card-body d-flex justify-content-center course-info course-info-loading">
+            <div class="sk-rotating-plane course-info course-info-loading" style="display: none;" id="course_data_panel"></div>
+            <i class="fas fa-graduation-cap fa-10x course-info course-info-nodata"></i>
+            <div class="course-info course-info-data" style="display: none; width: 100%;">
+                <div class="container-fluid">
+                    <div class="row" style="margin-bottom: 1rem">
+                        <div class="col-xl-2 col-sm-4">
+                            <div class="statistic d-flex align-items-center bg-white has-shadow">
+                                <div class="icon bg-green"><i class="fa fa-users"></i></div>
+                                <div class="text"><strong id="current_course_num_learners">0</strong><br><small>{{ _("Learners") }}</small></div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-sm-4">
+                            <div class="statistic d-flex align-items-center bg-white has-shadow">
+                                <div class="icon bg-blue"><i class="fa fa-file-alt"></i></div>
+                                <div class="text"><strong id="current_learner_num_activities">0</strong><br><small>{{ _("Activities") }}</small></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="table panel panel-default">
+                        <table class="table table-bordered table-striped table-hover"
+                               id="table_instrument_data"
+                               >
+                            <thead>
+                                <tr>
+                                    <th rowspan="2" data-field="acronym" data-sortable="true">{{ _('Acronym')}}</th>
+                                    <th rowspan="2" data-field="name" data-align="left" data-sortable="true">{{ _('Description') }}</th>
+                                    <th rowspan="2" data-field="requires_enrolment" data-align="left" data-sortable="true">{{_('Enrolment') }}</th>
+                                    <th colspan="3" data-field="enrolment" data-align="left" data-sortable="true">{{_('Enrolment') }}</th>
+                                    <th rowspan="2" data-field="learners_verification_requests" data-align="left" data-sortable="true">{{_('Verification') }}</th>
+                                    <th rowspan="2" data-field="learners_verification_stats" data-align="left" data-sortable="false" data-formatter="result_plot">{{ _('Results') }}</th>
+                                </tr>
+                                <tr>
+                                    <th data-field="learners_enrolment_completed" data-align="left" data-sortable="true">{{ _('Completed') }}</th>
+                                    <th data-field="learners_enrolment_started" data-align="left" data-sortable="true">{{ _('Started') }}</th>
+                                    <th data-field="learners_enrolment_empty" data-align="left" data-sortable="true">{{ _('Empty') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

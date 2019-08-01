@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block title %}{{ _('Activities') }}{% endblock %}
+{% block header_css %}
+    <!--
+  ~ TeSLA Admin
+  ~ Copyright (C) 2019 Universitat Oberta de Catalunya
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.6/combined/css/gijgo.min.css" integrity="sha256-U5OpLEoUC08hA4PQ/ekd6Gvjq5yZ3N3rFyDqPzWUFdA=" crossorigin="anonymous" />
+{% endblock %}
+{% block sections %}
+    {% include "sections/activities_tree.html" %}
+    {% include "sections/activity_data.html" %}
+{% endblock %}
+{% block body_scripts %}
+    <script src="{{ url_for('static', filename='vendor/bootstrap-table/bootstrap-table.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/bootstrap-table/locale/bootstrap-table-en-US.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.6/combined/js/gijgo.min.js" integrity="sha256-ZWOCjgrviPCXOV+NC3IKK1EVZXc6fca1rsbX6vOXxXg=" crossorigin="anonymous"></script>
+    <script src="{{ url_for('stats.static', filename='js/activities.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,84 @@
+<!--
+  ~ TeSLA Admin
+  ~ Copyright (C) 2019 Universitat Oberta de Catalunya
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<div class="statistic d-flex align-items-center bg-white has-shadow instrument-stats" data-acronym="{{i.acronym| lower}}">
+    <div class="col-xl-1 col-sm-3">
+        <div class="item d-flex align-items-center">
+            <div class="text">
+                <strong>{{ i.acronym }}</strong><BR>
+                <div class="led-box">
+                    <div class="led-off" id="{{i.acronym| lower}}-status"></div>
+                </div>
+            </div>
+            <div class="text">
+                <small id="{{i.acronym| lower}}-status-update"></small>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-2 col-sm-4 align-items-center {{i.acronym| lower}}-workers">
+        <div class="item d-flex align-items-center">
+            <div class="icon bg-violet"><i class="fab fa-whmcs"></i></div>
+            <div class="text">
+                <strong id="{{i.acronym| lower}}-workers"></strong>
+                <BR>
+                <small>{{ _('Workers') }}</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-2 col-sm-4 align-items-center {{i.acronym| lower}}-service">
+        <div class="item d-flex align-items-center">
+            <div class="icon bg-violet"><i class="fas fa-server"></i></div>
+            <div class="text">
+                <strong id="{{i.acronym| lower}}-service"></strong>
+                <BR>
+                <small>{{ _('Service') }}</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-2 col-sm-4 align-items-center {{i.acronym| lower}}-service">
+        <div class="item d-flex align-items-center">
+            <div class="icon bg-violet"><i class="fas fa-database"></i></div>
+            <div class="text">
+                <strong id="{{i.acronym| lower}}-db"></strong>
+                <BR>
+                <small>{{ _('Database') }}</small>
+            </div>
+        </div>
+    </div>
+    <div id="{{i.acronym| lower}}-msg-disabled" class="col-xl-3 col-sm-6 align-items-center" style="display: none;">
+        {{ _('This instrument is not deployed') }}
+    </div>
+    <div id="{{i.acronym| lower}}-msg-missing" class="col-xl-3 col-sm-6 align-items-center" style="display: none;">
+        {{ _('The instrument is deployed, but no worker or services are detected') }}
+    </div>
+    <div class="chart col-xl-2 col-sm-4 align-items-center gauge-container">
+        <canvas class="gauge-canvas" id="{{i.acronym| lower}}-pending-canvas"></canvas>
+        <span id="{{i.acronym| lower}}-pending-value" class="gauge-label"></span>
+        <span id="{{i.acronym| lower}}-pending-title" class="gauge-title text">{{ _('Pending') }}</span>
+    </div>
+    <div class="chart col-xl-2 col-sm-4 align-items-center gauge-container">
+        <canvas class="gauge-canvas" id="{{i.acronym| lower}}-d1-canvas"></canvas>
+        <span id="{{i.acronym| lower}}-d1-value" class="gauge-label"></span>
+        <span id="{{i.acronym| lower}}-d1-title" class="gauge-title text">{{ _('Velocity') }}</span>
+    </div>
+    <div class="chart col-xl-2 col-sm-4 align-items-center gauge-container">
+        <canvas class="gauge-canvas" id="{{i.acronym| lower}}-d2-canvas"></canvas>
+        <span id="{{i.acronym| lower}}-d2-value" class="gauge-label"></span>
+        <span id="{{i.acronym| lower}}-d2-title" class="gauge-title text">{{ _('Acceleration') }}</span>
+    </div>
+</div>

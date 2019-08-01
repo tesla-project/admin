@@ -1,0 +1,68 @@
+/*!
+ * TeSLA Admin
+ * Copyright (C) 2019 Universitat Oberta de Catalunya
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+// Carousels
+.carousel {
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    width: $carousel-control-icon-width;
+    height: $carousel-control-icon-height;
+  }
+  .carousel-control-prev-icon {
+    background-image: $carousel-control-prev-icon;
+  }
+  .carousel-control-next-icon {
+    background-image: $carousel-control-next-icon;
+  }
+  .carousel-indicators {
+    li {
+      width: $carousel-indicators-width;
+      height: $carousel-indicators-height;
+      border-radius: $carousel-indicators-border-radius;
+      cursor: pointer;
+    }
+  }
+}
+.carousel-fade {
+  .carousel-item {
+    opacity: 0;
+    transition-duration: $carousel-transition-duration;
+    transition-property: opacity;
+  }
+  .carousel-item.active,
+  .carousel-item-next.carousel-item-left,
+  .carousel-item-prev.carousel-item-right {
+    opacity: 1;
+  }
+  .carousel-item-left,
+  .carousel-item-right {
+    &.active {
+      opacity: 0;
+    }
+  }
+  .carousel-item-next,
+  .carousel-item-prev,
+  .carousel-item.active,
+  .carousel-item-left.active,
+  .carousel-item-prev.active {
+    transform: $carousel-item-transform;
+    @supports (transform-style: preserve-3d) {
+      transform: $carousel-item-transform-2;
+    }
+  }
+}
